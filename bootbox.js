@@ -644,6 +644,11 @@
      */
 
     dialog.on("hidden.bs.modal", function(e) {
+      // Solution the problem with scroll after closed the child window
+      if (options.parent) {
+        $(dialog).css("overflow-y", "auto");
+        $("body").addClass("modal-open");
+      }
       // ensure we don't accidentally intercept hidden events triggered
       // by children of the current dialog. We shouldn't anymore now BS
       // namespaces its events; but still worth doing
